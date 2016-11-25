@@ -5,6 +5,8 @@ angular.
     controller: function todoListController(){
         var ctrl = this;
 
+        ctrl.todoInput = '';
+
         //TODO: GET http to DB to get todoItems (create factory and add 'id' field to DB model)
         ctrl.todoItems = [
             {
@@ -26,8 +28,11 @@ angular.
         ];
 
         ctrl.todoAdd = function(){
-            ctrl.todoItems.push({text:ctrl.todoInput, done: false});
-            ctrl.todoInput="";
+            if(ctrl.todoInput.length){
+                ctrl.todoItems.push({text:ctrl.todoInput, done: false});
+                ctrl.todoInput="";
+            }
+
         };
         ctrl.removeCompleted = function () {
             var oldList = ctrl.todoItems, deletList = [];
