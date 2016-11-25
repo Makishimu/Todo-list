@@ -1,0 +1,15 @@
+<div class="col-md-4">
+    <form ng-submit="$ctrl.todoAdd()" class="item-add-form" >
+        <input type="text" ng-model="$ctrl.todoInput" maxlength="100" palaceholder="Add new item" class="form-control todo-input">
+        <input type="submit" value="Add new" class="btn btn-success" >
+    </form>
+    <ul ng-repeat="todoItem in $ctrl.todoItems">
+        <li>
+            <input type="checkbox" ng-model="todoItem.done">
+            <span>{{todoItem.text}}</span>
+        </li>
+    </ul>
+    <div>
+        <button ng-click="$ctrl.removeCompleted()" class="btn btn-danger" >Clear completed</button>
+    </div>
+</div>

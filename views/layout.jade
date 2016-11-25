@@ -1,0 +1,14 @@
+doctype html
+html(ng-app='todoListApp')
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(description='Simple todo.')
+    link(rel='stylesheet', href='node_modules/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet', href='public/stylesheets/style.css')
+    script(src='node_modules/angular/angular.js')
+    script(src='public/javascripts/app.js')
+    script(src='public/javascripts/todo-list/todo-list.module.js')
+    script(src='public/javascripts/todo-list/todo-list.component.js')
+  body
+    block content
