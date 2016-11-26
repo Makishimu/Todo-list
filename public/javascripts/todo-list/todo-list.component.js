@@ -2,16 +2,15 @@ angular.
     module('todoList', []).
     component('todoList', {
     templateUrl:'public/javascripts/todo-list/todo-list.template.html',
-    controller: function todoListController(){
+    controller: function todoListController(api){
         var ctrl = this;
 
         ctrl.todoInput = '';
-
-        //TODO: GET http to DB to get todoItems (create factory and add 'id' field to DB model)
+        ctrl.todoItems = api.getTodoListItems();
         ctrl.todoItems = [
             {
                 text: 'first todo item',
-                done: true
+                done: false
             }, {
                 text: 'second todo item',
                 done: false
@@ -23,13 +22,15 @@ angular.
                 done: false
             }, {
                 text: 'fifth todo item',
-                done: true
+                done: false
             }
         ];
 
         ctrl.todoAdd = function(){
             if(ctrl.todoInput.length){
-                ctrl.todoItems.push({text:ctrl.todoInput, done: false});
+                var pushingItem = {text:ctrl.todoInput, done: false};
+                ctrl.todoItems.push(pushingItem);
+                api.addTodoListItem(pushingItem);
                 ctrl.todoInput="";
             }
 
@@ -41,10 +42,10 @@ angular.
                 if(!item.done){
                     ctrl.todoItems.push(item);
                 } else{
-                    deletList.push(item)
+                    deletList.push(item);
+                    api.deleteTodoListItem(item._id);  // Without DB item._id is undefined
                 }
             });
-            //TODO: DELETE http to DB with deletList (in forEach loop?)
             
         };
     }
