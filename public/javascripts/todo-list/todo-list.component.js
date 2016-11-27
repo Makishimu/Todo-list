@@ -4,9 +4,7 @@ angular.
     templateUrl:'public/javascripts/todo-list/todo-list.template.html',
     controller: function todoListController(api, $http){
         var ctrl = this;
-
         ctrl.todoInput = '';
-        // ctrl.todoItems = api.getTodoListItems();
 
         function getTodoListItems () {
             $http.get('/api/todoitems').then(function (response) {
