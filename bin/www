@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('todo:server');
 var http = require('http');
 var mongoose = require('mongoose');
+var todoItem = require('../models/todoItem');
 
 /**
  * Get port from environment and store in Express.
@@ -34,7 +35,7 @@ server.on('listening', onListening);
  * Connect to a MongoDB database.
  */
 
-mongoose.connect('mongodb://localhost/todoListItems');
+mongoose.connect('mongodb://localhost/todoApp');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
